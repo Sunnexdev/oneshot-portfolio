@@ -8,14 +8,14 @@ export async function POST(req: Request) {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: 'Resend API key is missing' },
+        { error: 'RESEND_API_KEY missing in environment variables' },
         { status: 500 },
       );
     }
 
     const resend = new Resend(apiKey);
 
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'sunnexsnare19@gmail.com',
       subject: `New Portfolio Message from ${name}`,
@@ -23,12 +23,14 @@ export async function POST(req: Request) {
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
 
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
     return NextResponse.json({ success: true, data });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: 'Failed to send message' },
-      { status: 500 },
-    );
+  } catch (err: unknown) {
+    const errorMessage =
+      err instanceof Error ? err.message : 'Internal server error';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
