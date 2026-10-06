@@ -22,18 +22,34 @@ export default function About() {
         </h2>
 
         {/* Image Card Container */}
-        <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
+        {/* Container with portrait aspect ratio and controlled height */}
+        <div className="relative w-full max-w-md mx-auto aspect-[3/4] h-[450px] md:h-[550px] overflow-hidden rounded-3xl border border-white/10 bg-neutral-900">
           <Image
-            src="/profile.jpeg" // replace with your image path
+            src="/profile.jpeg" // replace with your photo path
             alt="Babatunde Sunday"
             fill
-            className="object-cover object-top" // centers and anchors focus towards the upper half/face
             priority
+            className="object-cover object-[center_20%] scale-100"
           />
 
-          {/* Your text overlay badges (THE DEVELOPER / Babatunde Sunday) stay here */}
+          {/* Badges Overlay */}
+          <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end gap-2 z-10">
+            <div className="bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+              <p className="text-[10px] tracking-widest text-gray-400 uppercase">
+                THE DEVELOPER
+              </p>
+              <h3 className="text-sm font-semibold text-white">
+                Babatunde Sunday
+              </h3>
+            </div>
+            <div className="bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
+              <p className="text-[10px] tracking-widest text-gray-400 uppercase">
+                CURRENTLY EXPLORING
+              </p>
+              <p className="text-xs text-white">UI/UX & Creative Engineering</p>
+            </div>
+          </div>
         </div>
-
         {/* Detailed Bio & Education */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
           <div className="space-y-4 text-zinc-300 text-sm leading-relaxed">
