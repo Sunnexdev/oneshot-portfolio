@@ -22,40 +22,16 @@ export default function About() {
         </h2>
 
         {/* Image Card Container */}
-        <div className="relative w-full rounded-3xl overflow-hidden border border-zinc-800/80 bg-zinc-900/60 shadow-2xl">
-          {/* Main Photo */}
-          <div className="relative w-full h-[420px] sm:h-[520px]">
-            <Image
-              src="/profile.jpeg"
-              alt="Babatunde Sunday"
-              fill
-              className="object-cover object-center"
-              priority
-            />
+        <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
+          <Image
+            src="/your-photo.jpeg" // replace with your image path
+            alt="Babatunde Sunday"
+            fill
+            className="object-cover object-top" // centers and anchors focus towards the upper half/face
+            priority
+          />
 
-            {/* Gradient Overlay for Readable Text */}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-          </div>
-
-          {/* Overlaid Bottom Text (Left Side) */}
-          <div className="absolute bottom-6 left-6 sm:left-8 z-10 space-y-1">
-            <span className="text-[10px] sm:text-xs tracking-widest text-zinc-400 uppercase font-bold">
-              THE DEVELOPER
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Babatunde Sunday
-            </h3>
-          </div>
-
-          {/* Floating Badge (Bottom Right) */}
-          <div className="absolute bottom-6 right-6 z-10 bg-zinc-900/90 border border-zinc-800 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-xl space-y-0.5">
-            <span className="text-[9px] sm:text-[10px] tracking-widest text-zinc-400 uppercase font-bold block">
-              CURRENTLY EXPLORING
-            </span>
-            <p className="text-xs sm:text-sm font-semibold text-white">
-              UI/UX & Creative Engineering
-            </p>
-          </div>
+          {/* Your text overlay badges (THE DEVELOPER / Babatunde Sunday) stay here */}
         </div>
 
         {/* Detailed Bio & Education */}
