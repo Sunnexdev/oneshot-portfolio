@@ -24,7 +24,7 @@ export default function About() {
         {/* Image Card Container */}
         <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
           <Image
-            src="/your-photo.jpeg" // replace with your image path
+            src="/profile.jpeg" // replace with your image path
             alt="Babatunde Sunday"
             fill
             className="object-cover object-top" // centers and anchors focus towards the upper half/face
