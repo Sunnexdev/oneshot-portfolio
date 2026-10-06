@@ -8,10 +8,12 @@ export default function Contact() {
   const [status, setStatus] = useState<
     'idle' | 'submitting' | 'success' | 'error'
   >('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
 
     const form = e.currentTarget;
     const formData = {
@@ -28,14 +30,23 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
-        setStatus('success');
-        form.reset();
-      } else {
-        setStatus('error');
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          data.error || 'Something went wrong. Please try again.',
+        );
       }
-    } catch {
+
+      setStatus('success');
+      form.reset();
+    } catch (err: unknown) {
       setStatus('error');
+      const msg =
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again.';
+      setErrorMessage(msg);
     }
   };
 
@@ -171,7 +182,7 @@ export default function Contact() {
             )}
             {status === 'error' && (
               <p className="text-red-400 text-xs font-medium mt-2">
-                Something went wrong. Please try again.
+                {errorMessage || 'Something went wrong. Please try again.'}
               </p>
             )}
           </form>
